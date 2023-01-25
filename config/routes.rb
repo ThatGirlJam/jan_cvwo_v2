@@ -5,7 +5,7 @@ Rails.application.routes.draw do
       post 'posts/create'
       get '/show/:id', to: 'posts#show'
       delete '/destroy/:id', to: 'posts#destroy'
-      patch '/update/:id', to: 'posts#update'
+      put '/update/:id', to: 'posts#update'
       get '/edit/:id', to: 'posts#edit'
     end
   end

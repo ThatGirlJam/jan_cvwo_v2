@@ -11,7 +11,7 @@ const EditPost = () => {
   
   
     useEffect(() => {
-      const url = "api/v1/posts/" + String(id);
+      const url = `/api/v1/edit/${id}`;
       fetch(url)
         .then((response) => response.json())
         .then((data) => {
@@ -37,7 +37,7 @@ const EditPost = () => {
   
     const onSubmit = (event) => {
       event.preventDefault();
-      const url = "api/v1/posts/" + String(id);
+      const url = `/api/v1/update/${id}`;
   
       if (title.length === 0 || category.length === 0 || bod.length === 0)
         return;
