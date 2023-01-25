@@ -1,7 +1,7 @@
-9.times do |i|
+3.times do |i|
     Post.create(
       title: "Post #{i + 1}",
-      category: 'some category',
+      category: 'Tea and Gossip',
       bod: 'Pss the tea is : ... '
     )
   end
