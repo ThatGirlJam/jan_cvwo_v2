@@ -44,7 +44,7 @@ const NewComment = () => {
         }
         throw new Error("Network response was not ok.");
       })
-      .then((response) => navigate(`/comment/${response.id}`))
+      .then((response) => navigate(`/post/${response.id}`))
       .catch((error) => console.log(error.message));
   };
 

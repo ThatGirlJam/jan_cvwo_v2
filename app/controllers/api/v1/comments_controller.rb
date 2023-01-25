@@ -7,7 +7,7 @@ class Api::V1::CommentsController < ApplicationController
   end
 
   def create
-    comment = Comment.create!(post_params)
+    comment = Comment.create!(comment_params)
     if comment
       render json: comment
     else
@@ -16,6 +16,7 @@ class Api::V1::CommentsController < ApplicationController
   end
 
   def show
+    @comment = Comment.find(params[:id])
     render json: @comment
   end
 
@@ -39,11 +40,11 @@ class Api::V1::CommentsController < ApplicationController
 
   private
 
-  def post_params
+  def comment_params
     params.permit(:content, :commenter)
   end
 
-  def set_post
+  def set_comment
     @comment = Comment.find(params[:id])
   end
 end

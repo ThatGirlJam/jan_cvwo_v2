@@ -6,6 +6,8 @@ import Post from "../components/Post";
 import EditPost from "../components/EditPost";
 import NewPost from "../components/NewPost";
 import NewComment from "../components/NewComment";
+import Comment from "../components/Comment";
+import EditComment from "../components/EditComment";
 
 export default (
   <Router>
@@ -16,6 +18,8 @@ export default (
       <Route path="/edit/:id" element={ <EditPost />} />
       <Route path="/post" element={<NewPost />} />
       <Route path="/comment" element={<NewComment />} />
+      <Route path="/comment/:id" element={<Comment />} />
+      <Route path="/comment/edit/:id" element={ <EditComment />} />
     </Routes>
   </Router>
 );

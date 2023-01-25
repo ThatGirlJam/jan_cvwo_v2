@@ -39,6 +39,9 @@ const Post = () => {
         <div className="card-body">
           <h5 className="card-title">{comment.content}</h5>
           <h6 className="card-title">{comment.commenter}</h6>
+          <Link to={`/comment/${comment.id}`} className="btn custom-button">
+            View
+          </Link>
         </div>
       </div>
     </div>
