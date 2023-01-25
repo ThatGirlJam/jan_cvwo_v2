@@ -92,10 +92,10 @@ const NewPost = () => {
               required
               onChange={(event) => onChange(event, setBod)}
             />
-            <button type="submit" className="btn custom-button mt-3">
+            <button type="submit" className="btn custom-create-button mt-3">
               Create Post
             </button>
-            <Link to="/posts" className="btn btn-link mt-3">
+            <Link to="/posts" className="btn btn-link mt-3 custom-back-button">
               Back to posts
             </Link>
           </form>

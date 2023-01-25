@@ -28,7 +28,7 @@ const Posts = () => {
         />
         <div className="card-body">
           <h5 className="card-title">{post.title}</h5>
-          <Link to={`/post/${post.id}`} className="btn custom-button">
+          <Link to={`/post/${post.id}`} className="btn custom-button bg-gradient">
             View Post
           </Link>
         </div>
@@ -56,7 +56,7 @@ const Posts = () => {
       <div className="py-5">
         <main className="container">
           <div className="text-end mb-3">
-            <Link to="/post" className="btn custom-button">
+            <Link to="/post" className="btn custom-create-button">
               Create New Post
             </Link>
           </div>
@@ -65,7 +65,7 @@ const Posts = () => {
           </div>
           <Link 
             to="/" 
-            className="btn custom-home-button"
+            className="btn custom-back-button"
             role="button"
           >
             Home

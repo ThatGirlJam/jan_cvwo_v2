@@ -13,17 +13,29 @@
 .secondary-color {
   color: #293241;
 }
+
+.bg-grayish {
+  background-color: lightslategrey;
+}
+
 .custom-button.btn {
   background-color: #293241;
   color: #FFF;
   border: none;
 }
 
-.custom-home-button.btn{
-  background-color: #8c9cff;
+.custom-back-button.btn{
+  background-color:darkcyan;
   color: #FFF;
   border: none;
 }
+
+.custom-create-button.btn{
+  background-color:palevioletred;
+  color: #FFF;
+  border: none;
+}
+
 .hero {
   width: 100vw;
   height: 50vh;
@@ -38,4 +50,17 @@
   height: 100%;
   width: 100%;
   opacity: 0.4;
+}
+
+
+.container-whole-page {
+  position: absolute;
+  top: 0px;
+  left: 0px; /* Gap left */
+  right: 0px; /* Gap right */
+  bottom: 0px;
+}
+
+.img-rounded{
+  border-radius: 5%;
 }

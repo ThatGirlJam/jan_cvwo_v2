@@ -133,7 +133,7 @@ const Post = () => {
             {comments.length > 0 ? allComments: noComment}
             </div>
             <div className="text-end mb-3">
-              <Link to="/comment" className="btn custom-button">
+              <Link to="/comment" className="btn custom-create-button">
                 Create New Comment
               </Link>
             </div>
@@ -155,7 +155,7 @@ const Post = () => {
             </button>
           </div>
         </div>
-        <Link to="/posts" className="btn btn-link">
+        <Link to="/posts" className="btn btn-link custom-back-button">
           Back to Posts
         </Link>
       </div>
