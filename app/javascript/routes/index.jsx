@@ -5,6 +5,7 @@ import Posts from "../components/Posts";
 import Post from "../components/Post";
 import EditPost from "../components/EditPost";
 import NewPost from "../components/NewPost";
+import NewComment from "../components/NewComment";
 
 export default (
   <Router>
@@ -14,6 +15,7 @@ export default (
       <Route path="/post/:id" element={<Post />} />
       <Route path="/edit/:id" element={ <EditPost />} />
       <Route path="/post" element={<NewPost />} />
+      <Route path="/comment" element={<NewComment />} />
     </Routes>
   </Router>
 );

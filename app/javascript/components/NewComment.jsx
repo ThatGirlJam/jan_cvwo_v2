@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-const NewPost = () => {
+const NewComment = () => {
   const navigate = useNavigate();
-  const [title, setTitle] = useState("");
-  const [category, setCategory] = useState("");
-  const [bod, setBod] = useState("");
+  const [content, setContent] = useState("");
+  const [commenter, setCommenter] = useState("");
 
   const stripHtmlEntities = (str) => {
     return String(str)
@@ -20,15 +19,14 @@ const NewPost = () => {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    const url = "/api/v1/posts/create";
+    const url = "/api/v1/comments/create";
 
-    if (title.length == 0 || category.length == 0 || bod.length == 0)
+    if (content.length == 0 || commenter.length == 0)
       return;
 
     const body = {
-      title,
-      category,
-      bod: stripHtmlEntities(bod),
+      content: stripHtmlEntities(content),
+      commenter,
     };
 
     const token = document.querySelector('meta[name="csrf-token"]').content;
@@ -46,7 +44,7 @@ const NewPost = () => {
         }
         throw new Error("Network response was not ok.");
       })
-      .then((response) => navigate(`/post/${response.id}`))
+      .then((response) => navigate(`/comment/${response.id}`))
       .catch((error) => console.log(error.message));
   };
 
@@ -55,45 +53,31 @@ const NewPost = () => {
       <div className="row">
         <div className="col-sm-12 col-lg-6 offset-lg-3">
           <h1 className="font-weight-normal mb-5">
-            Add a new post.
+            Add a new comment.
           </h1>
           <form onSubmit={onSubmit}>
             <div className="form-group">
-              <label htmlFor="postTitle">Post Title</label>
+                <label htmlFor="content">Your Comment</label>
+                <textarea
+                className="form-control"
+                id="content"
+                name="content"
+                rows="5"
+                required
+                onChange={(event) => onChange(event, setContent)}
+                />
+              <label htmlFor="commentCommenter">Your Name</label>
               <input
                 type="text"
-                name="title"
-                id="postTitle"
+                name="commenter"
+                id="commentCommenter"
                 className="form-control"
                 required
-                onChange={(event) => onChange(event, setTitle)}
+                onChange={(event) => onChange(event, setCommenter)}
               />
             </div>
-            <div className="form-group">
-              <label htmlFor="postCategory">Category</label>
-              <input
-                type="text"
-                name="category"
-                id="postCategory"
-                className="form-control"
-                required
-                onChange={(event) => onChange(event, setCategory)}
-              />
-              <small id="categoryHelp" className="form-text text-muted">
-                Separate each category with a comma.
-              </small>
-            </div>
-            <label htmlFor="bod">Description</label>
-            <textarea
-              className="form-control"
-              id="bod"
-              name="bod"
-              rows="5"
-              required
-              onChange={(event) => onChange(event, setBod)}
-            />
             <button type="submit" className="btn custom-button mt-3">
-              Create Post
+              Create Comment
             </button>
             <Link to="/posts" className="btn btn-link mt-3">
               Back to posts
@@ -105,4 +89,4 @@ const NewPost = () => {
   );
 };
 
-export default NewPost;
+export default NewComment;

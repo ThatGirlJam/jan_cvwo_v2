@@ -5,6 +5,7 @@ const Post = () => {
   const params = useParams();
   const navigate = useNavigate();
   const [post, setPost] = useState({ category: "" });
+  const [comments, setComments] = useState([]);
 
   useEffect(() => {
     const url = `/api/v1/show/${params.id}`;
@@ -19,11 +20,43 @@ const Post = () => {
       .catch(() => navigate("/posts"));
   }, [params.id]);
 
+  useEffect(() => {
+    const url = "/api/v1/comments/index";
+    fetch(url)
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .then((res) => setComments(res))
+      .catch(() => navigate("/"));
+  }, []);
+
+  const allComments = comments.map((comment, index) => (
+    <div key={index} className="col-md-6 col-lg-4">
+      <div className="card mb-4">
+        <div className="card-body">
+          <h5 className="card-title">{comment.content}</h5>
+          <h6 className="card-title">{comment.commenter}</h6>
+        </div>
+      </div>
+    </div>
+  ));
+
+  const noComment = (
+    <div className="vw-100 vh-50 d-flex align-items-center justify-content-center">
+      <h4>
+        No comments yet.
+      </h4>
+    </div>
+  );
+
   const addHtmlEntities = (str) => {
     return String(str).replace(/&lt;/g, "<").replace(/&gt;/g, ">");
   };
 
-  const deleteRecipe = () => {
+  const deletePost = () => {
     const url = `/api/v1/destroy/${params.id}`;
     const token = document.querySelector('meta[name="csrf-token"]').content;
 
@@ -91,12 +124,22 @@ const Post = () => {
                 __html: `${postBod}`,
               }}
             />
+            <h5></h5>
+            <h5 className="mb-2">Comments</h5>
+            <div className="row">
+            {comments.length > 0 ? allComments: noComment}
+            </div>
+            <div className="text-end mb-3">
+              <Link to="/comment" className="btn custom-button">
+                Create New Comment
+              </Link>
+            </div>
           </div>
           <div className="col-sm-12 col-lg-2">
             <button
               type="button"
               className="btn btn-danger"
-              onClick={deleteRecipe}
+              onClick={deletePost}
             >
               Delete Post
             </button>

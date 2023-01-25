@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :comments
   namespace :api do
     namespace :v1 do
       get 'posts/index'
@@ -7,6 +8,12 @@ Rails.application.routes.draw do
       delete '/destroy/:id', to: 'posts#destroy'
       put '/update/:id', to: 'posts#update'
       get '/edit/:id', to: 'posts#edit'
+      get 'comments/index'
+      post 'comments/create'
+      get '/comments/show/:id', to: 'comments#show'
+      delete '/comments/destroy/:id', to: 'comments#destroy'
+      put '/comments/update/:id', to: 'comments#update'
+      get '/comments/edit/:id', to: 'comments#edit'
     end
   end
   root 'homepage#index'
